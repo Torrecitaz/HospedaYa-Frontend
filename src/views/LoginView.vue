@@ -9,12 +9,16 @@ const password = ref('')
 const error = ref('')
 
 const handleLogin = async () => {
+  error.value = ''
   try {
     const { data } = await api.post('/v1/auth/login', { email: email.value, password: password.value })
     localStorage.setItem('token', data.token)
     localStorage.setItem('user', JSON.stringify(data.user))
-    
-    if (data.user.rol === 'Anfitrion') {
+
+    const rol = data.user.rol
+    if (rol === 'Admin') {
+      router.push('/admin/dashboard')
+    } else if (rol === 'Anfitrion') {
       router.push('/host/dashboard')
     } else {
       router.push('/client/dashboard')
