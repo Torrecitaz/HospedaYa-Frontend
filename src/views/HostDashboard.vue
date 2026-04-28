@@ -112,7 +112,7 @@ const crearPropiedad = async () => {
     activeTab.value = 'mis-propiedades'
   } catch (error: any) {
     mensajeColor.value = 'red'
-    mensaje.value = '❌ Error: ' + (error.response?.data?.message || error.message)
+    mensaje.value = '❌ Error: ' + (error.response?.data?.detail || error.response?.data?.message || error.message)
   } finally {
     cargando.value = false
   }
