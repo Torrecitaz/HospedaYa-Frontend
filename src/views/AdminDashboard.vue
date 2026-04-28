@@ -21,7 +21,7 @@ onMounted(async () => {
   try {
     const [propsRes, usuariosRes] = await Promise.allSettled([
       api.get('/v1/properties?pageNumber=1&pageSize=50'),
-      api.get('/v1/usuarios')
+      api.get('/v1/users')
     ])
 
     if (propsRes.status === 'fulfilled') {
